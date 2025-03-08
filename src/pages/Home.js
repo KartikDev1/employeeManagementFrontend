@@ -4,17 +4,19 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
 
+  const API_BASE_URL = "https://employeemanagement-production-c1aa.up.railway.app";
+
   const [employees,setEmployees] = useState([]);
 
   useEffect(() => {
-      axios.get("http://localhost:8080/api/employees")
+      axios.get(`${API_BASE_URL}/api/employees`)
             .then(response => setEmployees(response.data))
             .catch(error => console.error("Error Fetching employees :",error))
 
   },[])
 
   const deleteEmployee = (id) =>{
-    axios.delete(`http://localhost:8080/api/employees/${id}`)
+    axios.delete(`${API_BASE_URL}/api/employees/${id}`)
     .then(() => setEmployees(employees.filter(emp => emp.id !== id)))
     .catch(error => console.error("Error deleting employee:",error))
   }

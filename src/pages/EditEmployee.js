@@ -3,12 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const EditEmployee = () => {
+
+  const API_BASE_URL = "https://employeemanagement-production-c1aa.up.railway.app";
   const { id } = useParams();
   const navigate = useNavigate();
   const [employee, setEmployee] = useState({ name: "", department: "", salary: "" });
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/employees/${id}`)
+    axios.get(`${API_BASE_URL}/api/employees/${id}`)
       .then(response => setEmployee(response.data))
       .catch(error => console.error("Error fetching employee:", error));
   }, [id]);
@@ -19,7 +21,7 @@ const EditEmployee = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:8080/api/employees/${id}`, employee)
+    axios.put(`${API_BASE_URL}/api/employees/${id}`, employee)
       .then(() => navigate("/"))
       .catch(error => console.error("Error updating employee:", error));
   };

@@ -1,4 +1,5 @@
-{
+{ 
+  "proxy": "https://employeemanagement-production-c1aa.up.railway.app",
   "name": "myapp",
   "version": "0.1.0",
   "private": true,

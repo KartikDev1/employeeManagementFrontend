@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 const AddEmployee = () => {
 
+  const API_BASE_URL = "https://employeemanagement-production-c1aa.up.railway.app";
+
   const [employee,setEmployee] = useState({name : "",department : "", salary:""});
   const navigate = useNavigate();
 
@@ -13,7 +15,7 @@ const AddEmployee = () => {
 
   const handleSubmit = (e) =>{
     e.preventDefault();
-    axios.post("http://localhost:8080/api/employees",employee)
+    axios.post(`${API_BASE_URL}/api/employees`,employee)
     .then(() => navigate("/"))
     .catch(error => console.error("Error adding employee :",error))
   }
